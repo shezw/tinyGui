@@ -1,0 +1,13 @@
+prefix=@CMAKE_INSTALL_PREFIX@
+exec_prefix=${prefix}/bin
+libdir=${prefix}/lib
+sharedlibdir=${prefix}/share
+includedir=${prefix}/include/tinygui
+
+Name: tinygui
+Description: tiny webkit tool kit
+Version: @VERSION@
+
+Requires:
+Libs: -L${libdir} -L${sharedlibdir} -ltinygui
+Cflags: -I${includedir}

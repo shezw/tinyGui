@@ -1,0 +1,11 @@
+#ifndef TINYGUICONF_H
+#define TINYGUICONF_H
+
+
+#define TINYGUI_VERSION "0.0.1"
+
+#cmakedefine TINYGUI_SYS_32
+
+#cmakedefine TINYGUI_SYS_64
+
+#endif /* TINYGUICONF_H */

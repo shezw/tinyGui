@@ -1,0 +1,21 @@
+//
+// Created by 志伟佘 on 2024/3/10.
+//
+
+#include "memory.h"
+#include "fill.h"
+#include "blend.h"
+
+#ifndef TINYGUI_PROXY_H
+#define TINYGUI_PROXY_H
+
+typedef struct TinyGUI_Proxy_t {
+
+    AccNewBufferFunc    acc_new_buffer;
+    AccMallocFunc       acc_malloc;
+
+} TinyGUI_Proxy;
+
+void tinygui_proxy_init( TinyGUI_Proxy * proxyImp );
+
+#endif //TINYGUI_PROXY_H

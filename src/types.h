@@ -15,12 +15,13 @@ typedef TguiPtr *         TguiPofPtr;   // pointer of pointer
 
 #ifdef TINYGUI_SYS_32
 
-typedef unsigned long long TguiU32;     // U32
+typedef unsigned long TguiU32;      // U32
+typedef unsigned long long TguiU64; // U64
 
 #else
 
-typedef unsigned long long TguiU32;     // U32
-
+typedef unsigned int TguiU32;       // U32
+typedef unsigned long TguiU64;      // U64
 #endif
 
 #endif //TINYGUI_TYPES_H

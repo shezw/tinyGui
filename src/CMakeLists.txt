@@ -12,6 +12,18 @@ set(LIBTINYGUI_PUBLIC_CORE_HDRS
 
         )
 
+set(LIBTINYGUI_PUBLIC_ACC_SW_HDRS
+
+        src/acc/sw/sw_mem.h
+        src/acc/sw/sw_fill.h
+        src/acc/sw/sw_map.h
+        src/acc/sw/sw_blend.h
+        src/acc/sw/sw_flush.h
+
+        src/acc/sw/sw_acc.h
+
+        )
+
 set(LIBTINYGUI_PUBLIC_UI_HDRS
 
         src/gui/button.h
@@ -30,6 +42,12 @@ set(LIBTINYGUI_PUBLIC_HDRS
         ${CMAKE_CURRENT_BINARY_DIR}/tinyguiconf.h
 
         src/types.h
+
+        ${LIBTINYGUI_PUBLIC_CORE_HDRS}
+        ${LIBTINYGUI_PUBLIC_ACC_SW_HDRS}
+        ${LIBTINYGUI_PUBLIC_UI_HDRS}
+        ${LIBTINYGUI_PUBLIC_PROXY_HDRS}
+
         src/tinygui.h
 
         )
@@ -44,13 +62,21 @@ set(LIBTINYGUI_SRCS
         src/core/layer.c
         src/core/loop.c
         src/core/screen.c
-        src/core/tinygui.c
+
+        src/acc/sw/sw_blend.c
+        src/acc/sw/sw_mem.c
+        src/acc/sw/sw_fill.c
+        src/acc/sw/sw_map.c
+        src/acc/sw/sw_flush.c
+        src/acc/sw/sw_acc.c
 
         src/gui/
 
         src/proxy/fill.c
         src/proxy/blend.c
         src/proxy/memory.c
+
+        src/tinygui.c
         )
 
 add_library(tinygui SHARED ${LIBTINYGUI_SRCS} ${LIBTINYGUI_PUBLIC_HDRS} ${LIBTINYGUI_PRIVATE_HDRS})
@@ -71,6 +97,7 @@ endif()
 if(NOT SKIP_INSTALL_HEADERS AND NOT SKIP_INSTALL_ALL )
     install(FILES ${LIBTINYGUI_PUBLIC_CORE_HDRS} DESTINATION "${INSTALL_INC_DIR}/tinygui/core")
     install(FILES ${LIBTINYGUI_PUBLIC_UI_HDRS} DESTINATION "${INSTALL_INC_DIR}/tinygui/ui")
+    install(FILES ${LIBTINYGUI_PUBLIC_ACC_SW_HDRS} DESTINATION "${INSTALL_INC_DIR}/tinygui/acc/sw")
     install(FILES ${LIBTINYGUI_PUBLIC_PROXY_HDRS} DESTINATION "${INSTALL_INC_DIR}/tinygui/proxy")
     install(FILES ${LIBTINYGUI_PUBLIC_HDRS} DESTINATION "${INSTALL_INC_DIR}/tinygui")
 endif()

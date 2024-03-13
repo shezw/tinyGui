@@ -3,12 +3,10 @@
 //
 #include <stdlib.h>
 #include "sw_acc.h"
-#include "sw_blend.h"
-#include "sw_mem.h"
 
 static TinyGUI_Acc * sw_accImpl;
 
-TGUIStatus sw_acc_init( TinyGUI_Acc * ptr )
+TinyGUI_Status sw_acc_init( TinyGUI_Acc * ptr )
 {
     sw_accImpl = malloc( sizeof(TinyGUI_Acc) );
 
@@ -16,12 +14,12 @@ TGUIStatus sw_acc_init( TinyGUI_Acc * ptr )
     sw_accImpl->new_buffer = tinygui_sw_new_buffer;
 
 
-    return TGUI_OK;
+    return TinyGUI_OK;
 }
 
-TGUIStatus sw_acc_deinit()
+TinyGUI_Status sw_acc_deinit()
 {
     free(sw_accImpl);
 
-    return TGUI_OK;
+    return TinyGUI_OK;
 }

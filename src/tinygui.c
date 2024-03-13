@@ -9,16 +9,23 @@ void tinygui_version()
     printf( TINYGUI_VERSION );
 }
 
-TGUIStatus tinygui_init( TinyGUI_Config * conf )
+TinyGUI_Status tinygui_init( TinyGUI_Config * conf )
 {
     singletonTinyGUI = malloc( sizeof(TinyGUI) );
     singletonTinyGUI->conf = conf;
 
-    return TGUI_OK;
+    return TinyGUI_OK;
 }
 
-TGUIStatus tinygui_deinit()
+TinyGUI_Status tinygui_deinit()
 {
     free(singletonTinyGUI);
-    return TGUI_OK;
+    return TinyGUI_OK;
+}
+
+TinyGUI_Status tinygui_run( TguiU32 ms )
+{
+
+
+    return TinyGUI_OK;
 }

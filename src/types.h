@@ -25,36 +25,39 @@ typedef unsigned int TguiU32;       // U32
 typedef unsigned long TguiU64;      // U64
 #endif
 
-typedef int TGUIStatus;
+typedef int TinyGUI_Status;
 
-#define TGUI_OK  0
-#define TGUI_ERR -1
+#define TinyGUI_OK  0
+#define TinyGUI_ERR -1
 
-typedef enum {
-    TGUI_ACC_TYPE_NONE,
+typedef enum TinyGUI_AccType_e
+{
+    TinyGUI_AccType_None,
 
-    TGUI_ACC_TYPE_SW,
+    TinyGUI_AccType_Software,
 
-    TGUI_ACC_TYPE_ST_SSD202,
-    TGUI_ACC_TYPE_AW_R818,
-    TGUI_ACC_TYPE_AW_H616,
+    TinyGUI_AccType_SigmaStar_SSD202,
+    TinyGUI_AccType_AllWinner_R818,
+    TinyGUI_AccType_AllWinner_H616,
 
-    TGUI_ACC_TYPE_MAX
-} TGUI_ACC_TYPE;
+    TinyGUI_AccType_Max
+} TinyGUI_AccType;
 
-typedef enum {
-    TGUI_ROTATION_NONE = 0,
-    TGUI_ROTATION_90   = 90,
-    TGUI_ROTATION_180  = 180,
-    TGUI_ROTATION_270  = 270,
-    TGUI_ROTATION_MAX  = 360
-} TGUI_ROTATION_TYPE;
+typedef enum TinyGUI_RotationType_e
+{
+    TinyGUI_Rotation_None = 0,
+    TinyGUI_Rotation_90   = 90,
+    TinyGUI_Rotation_180  = 180,
+    TinyGUI_Rotation_270  = 270,
+    TinyGUI_Rotation_MAX  = 360
+} TinyGUI_RotationType;
 
-typedef enum {
-    TGUI_FLIP_NONE     = 0,
-    TGUI_FLIP_HORIZON,
-    TGUI_FLIP_VERTICAL,
-    TGUI_FLIP_MAX
-} TGUI_FLIP_TYPE;
+typedef enum TinyGUI_FlipType_e
+{
+    TinyGUI_Flip_None     = 0,
+    TinyGUI_Flip_Hor,
+    TinyGUI_Flip_Ver,
+    TinyGUI_Flip_Max
+} TinyGUI_FlipType;
 
 #endif //TINYGUI_TYPES_H

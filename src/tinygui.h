@@ -26,7 +26,9 @@ typedef struct TinyGUI_t {
 
 void tinygui_version();
 
-TGUIStatus tinygui_init( TinyGUI_Config * conf );
-TGUIStatus tinygui_deinit();
+TinyGUI_Status tinygui_init( TinyGUI_Config * conf );
+TinyGUI_Status tinygui_deinit();
+
+TinyGUI_Status tinygui_run( TguiU32 ms );
 
 #endif //TINYGUI_TINYGUI_H

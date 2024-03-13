@@ -4,10 +4,16 @@
 
 #include "../../proxy/proxy.h"
 
+#include "sw_mem.h"
+#include "sw_fill.h"
+#include "sw_map.h"
+#include "sw_blend.h"
+#include "sw_flush.h"
+
 #ifndef TINYGUI_SW_ACC_H
 #define TINYGUI_SW_ACC_H
 
-TGUIStatus sw_acc_init( TinyGUI_Acc * ptr );
-TGUIStatus sw_acc_deinit();
+TinyGUI_Status sw_acc_init( TinyGUI_Acc * ptr );
+TinyGUI_Status sw_acc_deinit();
 
 #endif //TINYGUI_SW_ACC_H

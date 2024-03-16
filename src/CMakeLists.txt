@@ -6,6 +6,7 @@ set(LIBTINYGUI_PUBLIC_CORE_HDRS
 
         src/core/buffer.h
         src/core/event.h
+        src/core/object.h
         src/core/layer.h
         src/core/loop.h
         src/core/screen.h
@@ -35,6 +36,7 @@ set(LIBTINYGUI_PUBLIC_PROXY_HDRS
         src/proxy/fill.h
         src/proxy/blend.h
         src/proxy/memory.h
+        src/proxy/proxy.h
 
         )
 
@@ -59,6 +61,7 @@ set(LIBTINYGUI_PRIVATE_HDRS
 set(LIBTINYGUI_SRCS
         src/core/buffer.c
         src/core/event.c
+        src/core/object.c
         src/core/layer.c
         src/core/loop.c
         src/core/screen.c
@@ -71,6 +74,7 @@ set(LIBTINYGUI_SRCS
         src/acc/sw/sw_acc.c
 
         src/gui/
+        src/gui/button.c
 
         src/proxy/fill.c
         src/proxy/blend.c

@@ -19,7 +19,11 @@ int main()
 
     sw_acc_init( proxy->acc );
 
+    config.proxy = proxy;
+
     tinygui_init( &config );
+
+    tinygui_run( 5 );
 
     return 0;
 }

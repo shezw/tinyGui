@@ -23,7 +23,7 @@ TinyGUI_Status tinygui_deinit()
     return TinyGUI_OK;
 }
 
-TinyGUI_Status tinygui_run( TguiU32 ms )
+TinyGUI_Status tinygui_run( U32 ms )
 {
 
 

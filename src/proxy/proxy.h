@@ -17,10 +17,6 @@ typedef struct TinyGUI_Acc_t
 
 typedef struct TinyGUI_Proxy_t
 {
-
-    TinyGUI_RotationType rotation;
-    TinyGUI_FlipType     flip;
-
     bool                 useAcc;
     TinyGUI_AccType      accType;
     TinyGUI_Acc        * acc;

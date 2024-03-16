@@ -11,9 +11,7 @@
 
 typedef struct TinyGUI_Config_t
 {
-    TguiU32         screen_w;
-    TguiU32         screen_h;
-
+    TinyGUI_ViewSet viewSetting;
     TinyGUI_Proxy * proxy;
 
 } TinyGUI_Config;
@@ -29,6 +27,6 @@ void tinygui_version();
 TinyGUI_Status tinygui_init( TinyGUI_Config * conf );
 TinyGUI_Status tinygui_deinit();
 
-TinyGUI_Status tinygui_run( TguiU32 ms );
+TinyGUI_Status tinygui_run( U32 ms );
 
 #endif //TINYGUI_TINYGUI_H

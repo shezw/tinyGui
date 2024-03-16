@@ -4,6 +4,7 @@
 
 #include "tinyguiconf.h"
 #include <stdbool.h>
+#include <stdint.h>
 
 #ifndef TINYGUI_TYPES_H
 #define TINYGUI_TYPES_H
@@ -14,15 +15,24 @@ typedef unsigned char *   TguiSID;      // string ID
 typedef unsigned char *   TguiPtr;      // normal pointer
 typedef TguiPtr *         TguiPofPtr;   // pointer of pointer
 
-#ifdef TINYGUI_SYS_32
+typedef uint64_t          TguiPhyAddr;
 
-typedef unsigned long TguiU32;      // U32
-typedef unsigned long long TguiU64; // U64
+#ifndef U32
 
-#else
+typedef uint8_t     U8;
+typedef uint16_t    U16;
+typedef uint32_t    U32;
+typedef uint64_t    U64;
 
-typedef unsigned int TguiU32;       // U32
-typedef unsigned long TguiU64;      // U64
+#endif
+
+#ifndef I32
+
+typedef int8_t      I8;
+typedef int16_t     I16;
+typedef int32_t     I32;
+typedef int64_t     I64;
+
 #endif
 
 typedef int TinyGUI_Status;
@@ -59,5 +69,14 @@ typedef enum TinyGUI_FlipType_e
     TinyGUI_Flip_Ver,
     TinyGUI_Flip_Max
 } TinyGUI_FlipType;
+
+typedef struct TinyGUI_ViewSet_t
+{
+    U32                  width;
+    U32                  height;
+    TinyGUI_RotationType rotation;
+    TinyGUI_FlipType     flip;
+    U8                   bpp;
+} TinyGUI_ViewSet;
 
 #endif //TINYGUI_TYPES_H

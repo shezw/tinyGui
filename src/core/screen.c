@@ -6,9 +6,9 @@
 
 TinyGUI_Screen * tinyGUiConstruct( TinyGUI_ViewSet conf )
 {
-    cObject(screen,TinyGUI_Screen);
-    cSubObject( screen->imp, TinyGUI_Reaction);
-    stCopy(screen->set, conf);
+    _CObject(screen,TinyGUI_Screen);
+    _CSubObject( screen->imp, TinyGUI_Reaction);
+    _StCopy(screen->set, conf);
 
 //    TinyGUI_Screen * screen = (TinyGUI_Screen *) PROXY_ACC->malloc( conf.width * conf.height * conf.bpp );
 //    screen->imp = PROXY_ACC->new_buffer( &conf );

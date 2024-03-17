@@ -12,18 +12,18 @@
 extern "C" {
 #endif
 
-#define cObject( ptr, Type ) \
+#define _CObject( ptr, Type ) \
 Type * ptr = (Type *) malloc( sizeof(Type) ); \
 memset( ptr, 0, sizeof(Type) );
 
-#define cSubObject( ptr, Type ) \
+#define _CSubObject( ptr, Type ) \
 ptr = (Type *)malloc(sizeof(Type));   \
 memset( ptr, 0, sizeof(Type) );
 
-#define stCopy( structTar, structFrom ) \
+#define _StCopy( structTar, structFrom ) \
 memcpy( &structTar, &structFrom, sizeof(structTar) );
 
-#define ptrCopy( ptrTar, ptrFrom, Type ) \
+#define _PtrCopy( ptrTar, ptrFrom, Type ) \
 memcpy( ptrTar, ptrFrom, sizeof(Type) );
 
 #ifdef __cplusplus

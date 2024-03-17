@@ -19,12 +19,9 @@ int main()
 {
     tinygui_version();
 
-    cObject( proxy, TinyGUI_Proxy);
+    _CSubObject( config.proxy, TinyGUI_Proxy);
 
-    sw_acc_construct( proxy->acc );
-//    sw_acc_init();
-
-    config.proxy = proxy;
+    sw_acc_construct( config.proxy->acc );
 
     tinygui_init( &config );
 

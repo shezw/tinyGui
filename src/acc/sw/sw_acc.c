@@ -9,7 +9,7 @@ static TinyGUI_Acc * sw_accImpl;
 
 void  sw_acc_construct( TinyGUI_Acc * accImpl )
 {
-    cObject( sw_accImpl, TinyGUI_Acc );
+    _CObject( sw_accImpl, TinyGUI_Acc );
 
     sw_accImpl->init        = sw_acc_init;
     sw_accImpl->deinit      = sw_acc_deinit;

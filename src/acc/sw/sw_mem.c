@@ -11,9 +11,9 @@
 
 TinyGUI_Buffer * sw_acc_new_buffer( TinyGUI_ViewSet * viewSet )
 {
-    cObject( buffer, TinyGUI_Buffer );
-    cSubObject( buffer->viewSet, TinyGUI_ViewSet );
-    ptrCopy( buffer->viewSet, viewSet, TinyGUI_ViewSet );
+    _CObject( buffer, TinyGUI_Buffer );
+    _CSubObject( buffer->viewSet, TinyGUI_ViewSet );
+    _PtrCopy( buffer->viewSet, viewSet, TinyGUI_ViewSet );
 
     buffer->vAddr = malloc( viewSet->width * viewSet->height * viewSet->bpp );
     buffer->pAddr = 0;

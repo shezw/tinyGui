@@ -2,24 +2,29 @@
 // Created by 志伟佘 on 2024/3/10.
 //
 #include <stdlib.h>
+#include "../../utils/cobj.h"
 #include "sw_acc.h"
 
 static TinyGUI_Acc * sw_accImpl;
 
-TinyGUI_Status sw_acc_init( TinyGUI_Acc * ptr )
+void  sw_acc_construct( TinyGUI_Acc * accImpl )
 {
-    sw_accImpl = malloc( sizeof(TinyGUI_Acc) );
+    cObject( sw_accImpl, TinyGUI_Acc );
 
-    sw_accImpl->malloc = tinygui_sw_malloc;
-    sw_accImpl->new_buffer = tinygui_sw_new_buffer;
+    sw_accImpl->init        = sw_acc_init;
+    sw_accImpl->deinit      = sw_acc_deinit;
+    sw_accImpl->malloc      = sw_acc_malloc;
+    sw_accImpl->new_buffer  = sw_acc_new_buffer;
 
-
-    return TinyGUI_OK;
+    accImpl = sw_accImpl;
 }
 
-TinyGUI_Status sw_acc_deinit()
+void sw_acc_init()
+{
+
+}
+
+void sw_acc_deinit()
 {
     free(sw_accImpl);
-
-    return TinyGUI_OK;
 }

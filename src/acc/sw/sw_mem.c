@@ -9,7 +9,7 @@
 //typedef TinyGUI_Buffer * buffer (*AccNewBufferFunc)( TinyGUI_ViewSet * viewSet );
 //typedef TinyGUI_Ptr * address (*AccMallocFunc)( U32 size );
 
-TinyGUI_Buffer * tinygui_sw_new_buffer( TinyGUI_ViewSet * viewSet )
+TinyGUI_Buffer * sw_acc_new_buffer( TinyGUI_ViewSet * viewSet )
 {
     cObject( buffer, TinyGUI_Buffer );
     cSubObject( buffer->viewSet, TinyGUI_ViewSet );
@@ -21,7 +21,7 @@ TinyGUI_Buffer * tinygui_sw_new_buffer( TinyGUI_ViewSet * viewSet )
     return buffer;
 }
 
-TinyGUI_Ptr tinygui_sw_malloc( U64 size )
+TinyGUI_Ptr sw_acc_malloc( U64 size )
 {
     return malloc( size );
 }

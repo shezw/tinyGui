@@ -18,6 +18,8 @@ extern "C" {
 
 **/
 
+typedef void (*AccInitFunc) (void);
+typedef void (*AccDeInitFunc) (void);
 typedef TinyGUI_Buffer * (*AccNewBufferFunc)( TinyGUI_ViewSet * viewSet );
 typedef TinyGUI_Ptr (*AccMallocFunc)( U64 size );
 

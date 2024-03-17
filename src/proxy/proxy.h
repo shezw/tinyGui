@@ -16,6 +16,8 @@ extern "C" {
 
 typedef struct TinyGUI_Acc_t
 {
+    AccInitFunc         init;
+    AccDeInitFunc       deinit;
     AccNewBufferFunc    new_buffer;
     AccMallocFunc       malloc;
 } TinyGUI_Acc;

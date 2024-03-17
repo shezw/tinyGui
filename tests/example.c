@@ -21,7 +21,8 @@ int main()
 
     cObject( proxy, TinyGUI_Proxy);
 
-    sw_acc_init( proxy->acc );
+    sw_acc_construct( proxy->acc );
+//    sw_acc_init();
 
     config.proxy = proxy;
 

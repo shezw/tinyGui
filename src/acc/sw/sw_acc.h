@@ -18,9 +18,10 @@ extern "C" {
 #endif
 
 
+void sw_acc_construct( TinyGUI_Acc * accImpl );
 
-TinyGUI_Status sw_acc_init( TinyGUI_Acc * ptr );
-TinyGUI_Status sw_acc_deinit();
+void sw_acc_init();
+void sw_acc_deinit();
 
 
 

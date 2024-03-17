@@ -14,7 +14,7 @@ extern "C" {
 
 
 TinyGUI_Buffer * tinygui_sw_new_buffer( TinyGUI_ViewSet * viewSet );
-TguiPtr tinygui_sw_malloc( U64 size );
+TinyGUI_Ptr tinygui_sw_malloc( U64 size );
 
 
 

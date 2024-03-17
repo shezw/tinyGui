@@ -7,7 +7,7 @@
 #include "sw_mem.h"
 
 //typedef TinyGUI_Buffer * buffer (*AccNewBufferFunc)( TinyGUI_ViewSet * viewSet );
-//typedef TguiPtr * address (*AccMallocFunc)( U32 size );
+//typedef TinyGUI_Ptr * address (*AccMallocFunc)( U32 size );
 
 TinyGUI_Buffer * tinygui_sw_new_buffer( TinyGUI_ViewSet * viewSet )
 {
@@ -21,7 +21,7 @@ TinyGUI_Buffer * tinygui_sw_new_buffer( TinyGUI_ViewSet * viewSet )
     return buffer;
 }
 
-TguiPtr tinygui_sw_malloc( U64 size )
+TinyGUI_Ptr tinygui_sw_malloc( U64 size )
 {
     return malloc( size );
 }

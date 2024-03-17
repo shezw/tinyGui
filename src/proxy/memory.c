@@ -9,7 +9,7 @@ TinyGUI_Buffer * acc_new_buffer( TinyGUI_ViewSet * viewSet )
     return 0;
 }
 
-TguiPtr acc_malloc( U64 size )
+TinyGUI_Ptr acc_malloc( U64 size )
 {
     return malloc(size);
 }

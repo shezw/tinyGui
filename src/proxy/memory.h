@@ -19,7 +19,7 @@ extern "C" {
 **/
 
 typedef TinyGUI_Buffer * (*AccNewBufferFunc)( TinyGUI_ViewSet * viewSet );
-typedef TguiPtr (*AccMallocFunc)( U64 size );
+typedef TinyGUI_Ptr (*AccMallocFunc)( U64 size );
 
 
 #ifdef __cplusplus

@@ -14,8 +14,8 @@ typedef struct TinyGUI_Buffer_t
 {
     TinyGUI_ViewSet * viewSet;
 
-    TguiPhyAddr    pAddr;
-    TguiPtr        vAddr;
+    TinyGUI_PhyAddr    pAddr;
+    TinyGUI_Ptr        vAddr;
 
 } TinyGUI_Buffer;
 

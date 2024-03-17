@@ -13,13 +13,13 @@
 extern "C" {
 #endif
 
-typedef unsigned long int TguiID;       // number ID
-typedef unsigned char *   TguiSID;      // string ID
+typedef unsigned long int TinyGUI_ID;       // number ID
+typedef unsigned char *   TinyGUI_SID;      // string ID
 
-typedef unsigned char *   TguiPtr;      // normal pointer
-typedef TguiPtr *         TguiPofPtr;   // pointer of pointer
+typedef unsigned char *   TinyGUI_Ptr;      // normal pointer
+typedef TinyGUI_Ptr *     TinyGUI_PofPtr;   // pointer of pointer
 
-typedef uint64_t          TguiPhyAddr;
+typedef uint64_t          TinyGUI_PhyAddr;
 
 #ifndef U32
 

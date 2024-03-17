@@ -3,11 +3,23 @@
 //
 
 #include "../../types.h"
+#include "../../core/buffer.h"
 
 #ifndef TINYGUI_SW_MEM_H
 #define TINYGUI_SW_MEM_H
 
-TguiID tinygui_sw_malloc( TguiPtr * address, TguiU32 size );
-TguiID tinygui_sw_new_buffer( TguiPtr * address, TguiU32 size );
+#ifdef __cplusplus
+extern "C" {
+#endif
+
+
+TinyGUI_Buffer * tinygui_sw_new_buffer( TinyGUI_ViewSet * viewSet );
+TguiPtr tinygui_sw_malloc( U64 size );
+
+
+
+#ifdef __cplusplus
+}
+#endif
 
 #endif //TINYGUI_SW_MEM_H

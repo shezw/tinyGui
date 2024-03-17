@@ -5,4 +5,12 @@
 #ifndef TINYGUI_LAYER_H
 #define TINYGUI_LAYER_H
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
+#ifdef __cplusplus
+}
+#endif
+
 #endif //TINYGUI_LAYER_H

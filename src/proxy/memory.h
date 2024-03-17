@@ -3,9 +3,14 @@
 //
 
 #include "../types.h"
+#include "../core/buffer.h"
 
 #ifndef TINYGUI_MEMORY_H
 #define TINYGUI_MEMORY_H
+
+#ifdef __cplusplus
+extern "C" {
+#endif
 
 /**
 
@@ -13,7 +18,12 @@
 
 **/
 
-typedef TguiID (*AccNewBufferFunc)( TguiPtr * userAddress, TguiU32 size );
-typedef TguiID (*AccMallocFunc)( TguiPtr * address, TguiU32 size );
+typedef TinyGUI_Buffer * (*AccNewBufferFunc)( TinyGUI_ViewSet * viewSet );
+typedef TguiPtr (*AccMallocFunc)( U64 size );
+
+
+#ifdef __cplusplus
+}
+#endif
 
 #endif //TINYGUI_MEMORY_H

@@ -1,15 +1,15 @@
 //
 // Created by 志伟佘 on 2024/3/10.
 //
-
+#include <stdlib.h>
 #include "memory.h"
 
-TguiID acc_new_buffer( TguiPtr * userAddress, TguiU32 size )
+TinyGUI_Buffer * acc_new_buffer( TinyGUI_ViewSet * viewSet )
 {
     return 0;
 }
 
-TguiID acc_malloc( TguiPtr * address, TguiU32 size )
+TguiPtr acc_malloc( U64 size )
 {
-    return 0;
+    return malloc(size);
 }

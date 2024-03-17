@@ -9,6 +9,10 @@
 #ifndef TINYGUI_TYPES_H
 #define TINYGUI_TYPES_H
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 typedef unsigned long int TguiID;       // number ID
 typedef unsigned char *   TguiSID;      // string ID
 
@@ -78,5 +82,9 @@ typedef struct TinyGUI_ViewSet_t
     TinyGUI_FlipType     flip;
     U8                   bpp;
 } TinyGUI_ViewSet;
+
+#ifdef __cplusplus
+}
+#endif
 
 #endif //TINYGUI_TYPES_H

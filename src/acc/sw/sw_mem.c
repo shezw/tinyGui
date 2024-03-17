@@ -2,16 +2,26 @@
 // Created by 志伟佘 on 2024/3/10.
 //
 #include <stdlib.h>
+#include <string.h>
+#include "../../utils/cobj.h"
 #include "sw_mem.h"
 
-TguiID tinygui_sw_malloc( TguiPtr * address, TguiU32 size )
+//typedef TinyGUI_Buffer * buffer (*AccNewBufferFunc)( TinyGUI_ViewSet * viewSet );
+//typedef TguiPtr * address (*AccMallocFunc)( U32 size );
+
+TinyGUI_Buffer * tinygui_sw_new_buffer( TinyGUI_ViewSet * viewSet )
 {
-    address = malloc( size );
-    return 0;
+    cObject( buffer, TinyGUI_Buffer );
+    cSubObject( buffer->viewSet, TinyGUI_ViewSet );
+    ptrCopy( buffer->viewSet, viewSet, TinyGUI_ViewSet );
+
+    buffer->vAddr = malloc( viewSet->width * viewSet->height * viewSet->bpp );
+    buffer->pAddr = 0;
+
+    return buffer;
 }
 
-TguiID tinygui_sw_new_buffer( TguiPtr * address, TguiU32 size )
+TguiPtr tinygui_sw_malloc( U64 size )
 {
-    address = malloc( size );
-    return 0;
+    return malloc( size );
 }

@@ -3,10 +3,14 @@
 //
 
 #include "../types.h"
-#include "object.h"
+#include "reaction.h"
 
 #ifndef TINYGUI_EVENT_H
 #define TINYGUI_EVENT_H
+
+#ifdef __cplusplus
+extern "C" {
+#endif
 
 typedef enum TinyGUI_EventType_e
 {
@@ -70,12 +74,16 @@ typedef enum TinyGUI_EventType_e
 
 typedef struct TinyGUI_Event_t
 {
-    TinyGUI_Object * fromTarget;
-    TinyGUI_Object * target;
+    TinyGUI_Reaction * fromTarget;
+    TinyGUI_Reaction * target;
     TinyGUI_EventType eventType;
 
 } TinyGUI_Event;
 
 
+
+#ifdef __cplusplus
+}
+#endif
 
 #endif //TINYGUI_EVENT_H

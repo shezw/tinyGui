@@ -3,6 +3,12 @@
 #include "tinygui.h"
 
 static TinyGUI * singletonTinyGUI;
+static bool      singletonInited;
+
+const TinyGUI * tinygui()
+{
+    return singletonInited ? singletonTinyGUI : NULL;
+}
 
 void tinygui_version()
 {

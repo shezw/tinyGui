@@ -6,7 +6,7 @@ set(LIBTINYGUI_PUBLIC_CORE_HDRS
 
         src/core/buffer.h
         src/core/event.h
-        src/core/object.h
+        src/core/reaction.h
         src/core/layer.h
         src/core/loop.h
         src/core/screen.h
@@ -61,7 +61,7 @@ set(LIBTINYGUI_PRIVATE_HDRS
 set(LIBTINYGUI_SRCS
         src/core/buffer.c
         src/core/event.c
-        src/core/object.c
+        src/core/reaction.c
         src/core/layer.c
         src/core/loop.c
         src/core/screen.c

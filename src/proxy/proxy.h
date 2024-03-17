@@ -9,6 +9,11 @@
 #ifndef TINYGUI_PROXY_H
 #define TINYGUI_PROXY_H
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
+
 typedef struct TinyGUI_Acc_t
 {
     AccNewBufferFunc    new_buffer;
@@ -24,5 +29,11 @@ typedef struct TinyGUI_Proxy_t
 } TinyGUI_Proxy;
 
 void tinygui_proxy_init( TinyGUI_Proxy * proxyImp );
+
+
+
+#ifdef __cplusplus
+}
+#endif
 
 #endif //TINYGUI_PROXY_H

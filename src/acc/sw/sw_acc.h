@@ -13,7 +13,19 @@
 #ifndef TINYGUI_SW_ACC_H
 #define TINYGUI_SW_ACC_H
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
+
+
 TinyGUI_Status sw_acc_init( TinyGUI_Acc * ptr );
 TinyGUI_Status sw_acc_deinit();
+
+
+
+#ifdef __cplusplus
+}
+#endif
 
 #endif //TINYGUI_SW_ACC_H

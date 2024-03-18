@@ -4,6 +4,7 @@
 #include "../types.h"
 #include "../tinygui.h"
 #include "reaction.h"
+#include "layer.h"
 
 #ifndef TINYGUI_SCREEN_H
 #define TINYGUI_SCREEN_H
@@ -16,13 +17,18 @@ extern "C" {
 
 typedef struct TinyGUI_Screen_t
 {
-    TinyGUI_ViewSet  set;
-    TinyGUI_Reaction * imp;
+    TinyGUI_ViewSet     set;
+    TinyGUI_Reaction *  imp;
+    bool                sleep;
+    TinyGUI_Layer   *   layers;
+    TinyGUI_Layer   *   lastLayer;
+
 } TinyGUI_Screen;
 
-TinyGUI_Screen * tinyGUiConstruct( TinyGUI_ViewSet conf );
+TinyGUI_Screen * tinygui_screen_construct( TinyGUI_ViewSet conf );
 
-
+TinyGUI_Status   tinygui_screen_add_layer
+( TinyGUI_Screen * screen, TinyGUI_ViewSet set, TinyGUI_ViewPos pos, TinyGUI_ViewCut cut );
 
 #ifdef __cplusplus
 }

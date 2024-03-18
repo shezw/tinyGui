@@ -13,8 +13,8 @@ extern "C" {
 #endif
 
 
-TinyGUI_Buffer * sw_acc_new_buffer( TinyGUI_ViewSet * viewSet );
-TinyGUI_Ptr sw_acc_malloc( U64 size );
+TinyGUI_Buffer * tinygui_sw_acc_new_buffer( TinyGUI_ViewSet * viewSet );
+TinyGUI_Ptr tinygui_sw_acc_malloc( U64 size );
 
 
 

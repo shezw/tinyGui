@@ -7,7 +7,7 @@
 
 static TinyGUI_Acc * sw_accImpl;
 
-void  sw_acc_construct( TinyGUI_Acc * accImpl )
+void  tinygui_sw_acc_construct( TinyGUI_Acc * accImpl )
 {
     _CObject( sw_accImpl, TinyGUI_Acc );
 
@@ -19,12 +19,12 @@ void  sw_acc_construct( TinyGUI_Acc * accImpl )
     accImpl = sw_accImpl;
 }
 
-void sw_acc_init()
+void tinygui_sw_acc_init()
 {
 
 }
 
-void sw_acc_deinit()
+void tinygui_sw_acc_deinit()
 {
     free(sw_accImpl);
 }

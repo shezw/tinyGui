@@ -13,14 +13,6 @@
 extern "C" {
 #endif
 
-typedef unsigned long int TinyGUI_ID;       // number ID
-typedef unsigned char *   TinyGUI_SID;      // string ID
-
-typedef unsigned char *   TinyGUI_Ptr;      // normal pointer
-typedef TinyGUI_Ptr *     TinyGUI_PofPtr;   // pointer of pointer
-
-typedef uint64_t          TinyGUI_PhyAddr;
-
 #ifndef U32
 
 typedef uint8_t     U8;
@@ -38,6 +30,16 @@ typedef int32_t     I32;
 typedef int64_t     I64;
 
 #endif
+
+typedef unsigned long int TinyGUI_ID;       // number ID
+typedef unsigned char *   TinyGUI_SID;      // string ID
+
+typedef unsigned char *   TinyGUI_Ptr;      // normal pointer
+typedef TinyGUI_Ptr *     TinyGUI_PofPtr;   // pointer of pointer
+
+typedef uint64_t          TinyGUI_PhyAddr;
+typedef char *            TinyGUI_String;
+typedef U64               TinyGUI_TimeStamp;
 
 typedef int TinyGUI_Status;
 
@@ -82,6 +84,22 @@ typedef struct TinyGUI_ViewSet_t
     TinyGUI_FlipType     flip;
     U8                   bpp;
 } TinyGUI_ViewSet;
+
+typedef struct TinyGUI_ViewPos_t
+{
+    U32 x;
+    U32 y;
+    TinyGUI_RotationType rotation;
+    TinyGUI_FlipType     flip;
+} TinyGUI_ViewPos;
+
+typedef struct TinyGUI_ViewCut_t
+{
+    I32 offsetX;
+    I32 offsetY;
+    I32 clipX;
+    I32 clipY;
+} TinyGUI_ViewCut;
 
 #ifdef __cplusplus
 }

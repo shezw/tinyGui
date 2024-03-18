@@ -5,6 +5,7 @@
 #include "../src/acc/sw/sw_acc.h"
 #include "../src/utils/cobj.h"
 #include "../src/tinygui.h"
+#include "../src/core/screen.h"
 
 static TinyGUI_Config config = {
     800,
@@ -19,9 +20,11 @@ int main()
 {
     tinygui_version();
 
+    tinygui_screen_construct( config );
+
     _CSubObject( config.proxy, TinyGUI_Proxy);
 
-    sw_acc_construct( config.proxy->acc );
+    tinygui_sw_acc_construct( config.proxy->acc );
 
     tinygui_init( &config );
 

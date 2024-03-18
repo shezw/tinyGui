@@ -9,3 +9,10 @@ Layers are accelerated rendering blocks.
 
 [Architecture](docs/architecture.md)
 
+ToDo list:
+- [ ] core 
+- [ ] macOS simulator
+- [ ] fbdev platform
+- [ ] sw acc
+- [ ] Windows simulator 
+- [ ] drm platform

@@ -2,6 +2,7 @@
 // Created by 志伟佘 on 2024/3/9.
 //
 #include "../types.h"
+#include "reaction.h"
 
 #ifndef TINYGUI_LAYER_H
 #define TINYGUI_LAYER_H
@@ -28,6 +29,11 @@ typedef struct TinyGUI_Layer_t
 
 TinyGUI_Layer * tinygui_layer_construct( TinyGUI_ViewSet set, TinyGUI_ViewPos pos, TinyGUI_ViewCut cut );
 
+TinyGUI_Status tinygui_layer_add_event_listener
+        ( TinyGUI_Layer * layer, TinyGUI_EventType eventType, TinyGUI_ReactionEventCall callback );
+
+TinyGUI_Status tinygui_layer_remove_event_listener
+        ( TinyGUI_Layer * layer, TinyGUI_EventType eventType, TinyGUI_ReactionEventCall callback );
 
 #ifdef __cplusplus
 }

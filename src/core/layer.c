@@ -14,3 +14,15 @@ TinyGUI_Layer * tinygui_layer_construct
 
     return layer;
 }
+
+TinyGUI_Status tinygui_layer_add_event_listener
+        ( TinyGUI_Layer * layer, TinyGUI_EventType eventType, TinyGUI_ReactionEventCall callback )
+{
+    return tinygui_reaction_add_event_listener(layer->imp,eventType,callback);
+}
+
+TinyGUI_Status tinygui_layer_remove_event_listener
+        ( TinyGUI_Layer * layer, TinyGUI_EventType eventType, TinyGUI_ReactionEventCall callback )
+{
+    return tinygui_reaction_remove_event_listener(layer->imp,eventType,callback);
+}

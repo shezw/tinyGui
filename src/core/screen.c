@@ -10,7 +10,7 @@ TinyGUI_Screen * tinygui_screen_construct( TinyGUI_ViewSet conf )
     _CSubObject( screen->imp, TinyGUI_Reaction);
     _StCopy(screen->set, conf);
 
-//    screen->imp->eventCall = tinyGUIScreen_ReactionEventCall;
+//    screen->imp->callbacks = tinyGUIScreen_ReactionEventCall;
 
     return screen;
 }
@@ -26,4 +26,16 @@ TinyGUI_Status   tinygui_screen_add_layer
 
     screen->lastLayer = layer;
     return TinyGUI_OK;
+}
+
+TinyGUI_Status tinygui_screen_add_event_listener
+        ( TinyGUI_Screen * screen, TinyGUI_EventType eventType, TinyGUI_ReactionEventCall callback )
+{
+    return tinygui_reaction_add_event_listener(screen->imp,eventType,callback);
+}
+
+TinyGUI_Status tinygui_screen_remove_event_listener
+        ( TinyGUI_Screen * screen, TinyGUI_EventType eventType, TinyGUI_ReactionEventCall callback )
+{
+    return tinygui_reaction_remove_event_listener(screen->imp,eventType,callback);
 }

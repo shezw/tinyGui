@@ -30,6 +30,12 @@ TinyGUI_Screen * tinygui_screen_construct( TinyGUI_ViewSet conf );
 TinyGUI_Status   tinygui_screen_add_layer
 ( TinyGUI_Screen * screen, TinyGUI_ViewSet set, TinyGUI_ViewPos pos, TinyGUI_ViewCut cut );
 
+TinyGUI_Status tinygui_screen_add_event_listener
+        ( TinyGUI_Screen * screen, TinyGUI_EventType eventType, TinyGUI_ReactionEventCall callback );
+
+TinyGUI_Status tinygui_screen_remove_event_listener
+        ( TinyGUI_Screen * screen, TinyGUI_EventType eventType, TinyGUI_ReactionEventCall callback );
+
 #ifdef __cplusplus
 }
 #endif

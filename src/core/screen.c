@@ -10,7 +10,7 @@ TinyGUI_Screen * tinygui_screen_construct( TinyGUI_ViewSet conf )
     _CSubObject( screen->imp, TinyGUI_Reaction);
     _StCopy(screen->set, conf);
 
-    screen->imp->eventCall = tinyGUIScreen_ReactionEventCall;
+//    screen->imp->eventCall = tinyGUIScreen_ReactionEventCall;
 
     return screen;
 }

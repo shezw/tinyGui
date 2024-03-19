@@ -16,9 +16,11 @@ extern "C" {
 Type * ptr = (Type *) malloc( sizeof(Type) ); \
 memset( ptr, 0, sizeof(Type) );
 
-#define _CSubObject( ptr, Type ) \
+#define _CPtrObject( ptr, Type ) \
 ptr = (Type *)malloc(sizeof(Type));   \
 memset( ptr, 0, sizeof(Type) );
+
+#define _CSubObject( ptr, Type ) _CPtrObject( ptr, Type )
 
 #define _StCopy( structTar, structFrom ) \
 memcpy( &structTar, &structFrom, sizeof(structTar) );

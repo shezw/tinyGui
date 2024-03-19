@@ -19,7 +19,7 @@ TinyGUI_Status tinygui_reaction_add_event_listener
 
     reaction->callCount ++;
 
-    return OK;
+    return TinyGUI_OK;
 }
 
 

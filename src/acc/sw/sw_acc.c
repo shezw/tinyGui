@@ -9,12 +9,12 @@ static TinyGUI_Acc * sw_accImpl;
 
 void  tinygui_sw_acc_construct( TinyGUI_Acc * accImpl )
 {
-    _CObject( sw_accImpl, TinyGUI_Acc );
+    _CPtrObject( sw_accImpl, TinyGUI_Acc );
 
-    sw_accImpl->init        = sw_acc_init;
-    sw_accImpl->deinit      = sw_acc_deinit;
-    sw_accImpl->malloc      = sw_acc_malloc;
-    sw_accImpl->new_buffer  = sw_acc_new_buffer;
+    sw_accImpl->init        = tinygui_sw_acc_init;
+    sw_accImpl->deinit      = tinygui_sw_acc_deinit;
+    sw_accImpl->malloc      = tinygui_sw_acc_malloc;
+    sw_accImpl->new_buffer  = tinygui_sw_acc_new_buffer;
 
     accImpl = sw_accImpl;
 }

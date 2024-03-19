@@ -20,7 +20,7 @@ int main()
 {
     tinygui_version();
 
-    tinygui_screen_construct( config );
+    tinygui_screen_construct( config.viewSet );
 
     _CSubObject( config.proxy, TinyGUI_Proxy);
 

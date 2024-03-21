@@ -40,7 +40,9 @@ configure_file( ${CMAKE_CURRENT_SOURCE_DIR}/tinygui.pc.in
 		${LIBTINYGUI_PC} @ONLY)
 configure_file(${CMAKE_CURRENT_SOURCE_DIR}/tinyguiconf.h.in
 		${CMAKE_CURRENT_BINARY_DIR}/tinyguiconf.h @ONLY)
-include_directories(${CMAKE_CURRENT_BINARY_DIR} ${CMAKE_SOURCE_DIR})
+include_directories(${CMAKE_CURRENT_BINARY_DIR} ${CMAKE_SOURCE_DIR} 3rd)
+
+include(3rd/CMakeLists.txt)
 
 include(src/CMakeLists.txt)
 

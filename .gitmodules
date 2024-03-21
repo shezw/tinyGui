@@ -1,0 +1,3 @@
+[submodule "3rd/clist"]
+	path = 3rd/clist
+	url = git@github.com:clibs/list.git

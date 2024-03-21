@@ -2,6 +2,12 @@
 #============================================================================
 # libtinygui
 #============================================================================
+set(LIBTINYGUI_PUBLIC_UTIL_HDRS
+
+        src/utils/cobj.h
+
+        )
+
 set(LIBTINYGUI_PUBLIC_CORE_HDRS
 
         src/core/buffer.h
@@ -45,6 +51,7 @@ set(LIBTINYGUI_PUBLIC_HDRS
 
         src/types.h
 
+        ${LIBTINYGUI_PUBLIC_UTILS_HDRS}
         ${LIBTINYGUI_PUBLIC_CORE_HDRS}
         ${LIBTINYGUI_PUBLIC_ACC_SW_HDRS}
         ${LIBTINYGUI_PUBLIC_UI_HDRS}
@@ -83,8 +90,8 @@ set(LIBTINYGUI_SRCS
         src/tinygui.c
         )
 
-add_library(tinygui SHARED ${LIBTINYGUI_SRCS} ${LIBTINYGUI_PUBLIC_HDRS} ${LIBTINYGUI_PRIVATE_HDRS})
-add_library(tinygui-static STATIC ${LIBTINYGUI_SRCS} ${LIBTINYGUI_PUBLIC_HDRS} ${LIBTINYGUI_PRIVATE_HDRS})
+add_library(tinygui SHARED ${LIBTINYGUI_SRCS} ${LIBTINYGUI_THIRD_SRCS} ${LIBTINYGUI_PUBLIC_HDRS} ${LIBTINYGUI_PRIVATE_HDRS})
+add_library(tinygui-static STATIC ${LIBTINYGUI_SRCS} ${LIBTINYGUI_THIRD_SRCS} ${LIBTINYGUI_PUBLIC_HDRS} ${LIBTINYGUI_PRIVATE_HDRS})
 set_target_properties(tinygui PROPERTIES SOVERSION 1)
 set_target_properties(tinygui PROPERTIES VERSION ${VERSION})
 

@@ -35,6 +35,7 @@ typedef unsigned long int TinyGUI_ID;       // number ID
 typedef unsigned char *   TinyGUI_SID;      // string ID
 
 typedef unsigned char *   TinyGUI_Ptr;      // normal pointer
+typedef void *            TinyGUI_AnyPtr;   // any pointer
 typedef TinyGUI_Ptr *     TinyGUI_PofPtr;   // pointer of pointer
 
 typedef uint64_t          TinyGUI_PhyAddr;

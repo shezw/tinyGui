@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <assert.h>
 #include <pthread.h>
 #include <unistd.h>
 #include "tinygui.h"
@@ -35,6 +36,8 @@ TinyGUI_Status tinygui_init( TinyGUI_Config * conf )
     singletonTinyGUI = malloc( sizeof(TinyGUI) );
     singletonInited = true;
     singletonTinyGUI->conf = conf;
+
+    assert( conf->proxy && conf->proxy->acc );
 
     return TinyGUI_OK;
 }

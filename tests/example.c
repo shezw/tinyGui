@@ -22,7 +22,9 @@ int main()
 
     _CSubObject( config.proxy, TinyGUI_Proxy);
 
-    config.proxy->acc = tinygui_sw_acc_construct(  );
+    config.proxy->accType = TinyGUI_AccType_None;
+    config.proxy->useAcc = false;
+    config.proxy->acc = tinygui_sw_acc_construct();
 
     tinygui_init( &config );
 

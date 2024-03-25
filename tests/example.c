@@ -20,15 +20,18 @@ int main()
 {
     tinygui_version();
 
-    tinygui_screen_construct( config.viewSet );
-
     _CSubObject( config.proxy, TinyGUI_Proxy);
 
-    tinygui_sw_acc_construct( config.proxy->acc );
+    config.proxy->acc = tinygui_sw_acc_construct(  );
 
     tinygui_init( &config );
 
-    tinygui_run( 5 );
+    tinygui_screen_construct( config.viewSet, false );
+
+    tinygui_set_fps(1);
+    tinygui_set_input_fps(5);
+
+    tinygui_main();
 
     return 0;
 }

@@ -3,14 +3,17 @@
 //
 #include "../utils/cobj.h"
 #include "screen.h"
+#include "buffer.h"
 
-TinyGUI_Screen * tinygui_screen_construct( TinyGUI_ViewSet conf )
+TinyGUI_Screen * tinygui_screen_construct( TinyGUI_ViewSet conf, bool directMode )
 {
     _CObject(screen,TinyGUI_Screen);
     _CSubObject( screen->imp, TinyGUI_Reaction);
     _StCopy(screen->set, conf);
 
-//    screen->imp->callbacks = tinyGUIScreen_ReactionEventCall;
+    screen->directMode = directMode;
+    if ( !screen->directMode )
+        screen->imp->buffer = PROXY_ACC->new_buffer( &conf );
 
     return screen;
 }

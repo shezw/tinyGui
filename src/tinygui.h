@@ -13,7 +13,8 @@
 extern "C" {
 #endif
 
-
+#define TINYGUI_MAX_FPS         200
+#define TINYGUI_MAX_INPUT_FPS   500
 
 typedef struct TinyGUI_Config_t
 {
@@ -30,12 +31,28 @@ typedef struct TinyGUI_t {
 
 void tinygui_version();
 
+void tinygui_main();
+
 const TinyGUI * tinygui();
 
 TinyGUI_Status tinygui_init( TinyGUI_Config * conf );
 TinyGUI_Status tinygui_deinit();
 
 TinyGUI_Status tinygui_run( U32 ms );
+
+void tinygui_set_fps( TinyGUI_TimeStamp fps );
+void tinygui_set_input_fps( TinyGUI_TimeStamp fps );
+
+TinyGUI_TimeStamp tinygui_get_fps();
+TinyGUI_TimeStamp tinygui_get_input_fps();
+
+TinyGUI_TimeStamp tinygui_get_period();
+TinyGUI_TimeStamp tinygui_get_input_period();
+
+void tinygui_main_mutex_init();
+void tinygui_main_lock();
+void tinygui_main_unlock();
+void tinygui_main_mutex_destroy();
 
 #define PROXY_ACC  tinygui()->conf->proxy->acc
 #define PROXY      tinygui()->conf->proxy

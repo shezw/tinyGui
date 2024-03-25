@@ -20,12 +20,13 @@ typedef struct TinyGUI_Screen_t
     TinyGUI_ViewSet     set;
     TinyGUI_Reaction *  imp;
     bool                sleep;
+    bool                directMode;
     TinyGUI_Layer   *   layers;
     TinyGUI_Layer   *   lastLayer;
 
 } TinyGUI_Screen;
 
-TinyGUI_Screen * tinygui_screen_construct( TinyGUI_ViewSet conf );
+TinyGUI_Screen * tinygui_screen_construct( TinyGUI_ViewSet conf, bool directMode );
 
 TinyGUI_Status   tinygui_screen_add_layer
 ( TinyGUI_Screen * screen, TinyGUI_ViewSet set, TinyGUI_ViewPos pos, TinyGUI_ViewCut cut );

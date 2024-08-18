@@ -2,15 +2,18 @@
 // Created by 志伟佘 on 2024/3/10.
 //
 #include <stdlib.h>
+#include <string.h>
 #include "proxy.h"
 
-static TypeGUI_Proxy * singletonProxy;
+static TinyGUI_Proxy * singletonProxy;
 
 void tinygui_proxy_init( TinyGUI_Proxy * proxyImp )
 {
-    singletonProxy = malloc( sizeof TinyGUI_Proxy);
+    singletonProxy = malloc( sizeof( TinyGUI_Proxy));
+    memset(singletonProxy,0,sizeof(TinyGUI_Proxy));
 
-    singletonProxy->acc_new_buffer = proxyImp->acc_new_buffer;
-    singletonProxy->acc_malloc = proxyImp->acc_malloc;
+    singletonProxy->acc = proxyImp->acc;
+    singletonProxy->accType = proxyImp->accType;
+    singletonProxy->useAcc = true;
 
 }

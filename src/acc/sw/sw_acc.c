@@ -16,6 +16,8 @@ TinyGUI_Acc *  tinygui_sw_acc_construct()
     sw_accImpl->malloc      = tinygui_sw_acc_malloc;
     sw_accImpl->new_buffer  = tinygui_sw_acc_new_buffer;
 
+    sw_accImpl->blend       = tinygui_sw_acc_blend;
+
     return sw_accImpl;
 }
 

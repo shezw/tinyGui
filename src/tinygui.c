@@ -68,9 +68,10 @@ void tinygui_main_mutex_destroy()
     pthread_mutex_destroy(&mutex);
 }
 
+static bool run_input_thread = true;
 static void *input_thread()
 {
-    while(true)
+    while( run_input_thread )
     {
         // todo input handler
         usleep( currentInputPeriodUS );
@@ -79,13 +80,14 @@ static void *input_thread()
     return 0;
 }
 
+static bool run_main_thread = true;
 void tinygui_main()
 {
     tinygui_main_mutex_init();
 
     pthread_create(&p_input, NULL, input_thread, NULL);
 
-    while(true) {
+    while( run_main_thread ) {
 
         tinygui_main_lock();
 

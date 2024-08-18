@@ -20,6 +20,8 @@ typedef struct TinyGUI_Acc_t
     AccDeInitFunc       deinit;
     AccNewBufferFunc    new_buffer;
     AccMallocFunc       malloc;
+
+    AccBufferBlend      blend;
 } TinyGUI_Acc;
 
 typedef struct TinyGUI_Proxy_t

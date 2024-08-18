@@ -56,6 +56,7 @@ typedef enum TinyGUI_AccType_e
     TinyGUI_AccType_SigmaStar_SSD202,
     TinyGUI_AccType_AllWinner_R818,
     TinyGUI_AccType_AllWinner_H616,
+    TinyGUI_AccType_AllWinner_T113,
 
     TinyGUI_AccType_Max
 } TinyGUI_AccType;
@@ -101,6 +102,14 @@ typedef struct TinyGUI_ViewCut_t
     I32 clipX;
     I32 clipY;
 } TinyGUI_ViewCut;
+
+typedef struct TinyGUI_ViewRect_t
+{
+    U32 w;
+    U32 h;
+    I32 x;
+    I32 y;
+} TinyGUI_ViewRect;
 
 #ifdef __cplusplus
 }

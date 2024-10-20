@@ -9,26 +9,24 @@ PROJ_SCRIPTS_DIR="${PROJ_DIR}/scripts"
 PROJ_SRC_DIR="${PROJ_DIR}/src"
 THIRD_DIR="${PROJ_DIR}/3rd"
 
+PLATFORM="unknown"
+DEBUG_TYPE="Debug"
+HOST_TYPE="unknown"
+TARGET_SYSTEM="unknown"
+SKIP=0
+HELP=0
+CLEAN=0
+TARGET_ARCH="x86_64"
+IS_CROSS_COMPILING=0
+SHARED=0
 
-host_type="unknown"
-platform="unknown"
-debug="Debug"
-skip=0
-help=0
-clean=0
-arch="x86_64"
-cross=0
-shared=0
-
-make_cores=32
-cmake_command="cmake"
-make_command="make"
-autotool_command="configure"
-autotool_gen="aclocal & autoconf & automake"
+MAKE_CORES=32
+CMAKE_COMMAND="cmake"
+MAKE_COMMAND="make"
+AUTOTOOL_COMMAND="configure"
+AUTOTOOL_GEN="aclocal & autoconf & automake"
 
 set_build_config=0
-
-INI_FILE=${PROJ_SCRIPTS_DIR}/${platform}.ini
 
 while [[ $# -gt 0 ]];do
   key=${1}
@@ -40,43 +38,43 @@ while [[ $# -gt 0 ]];do
           ;;
         -p|--platform)
             echo "Platform: $2";
-            platform=$2
+            PLATFORM=$2
             shift 2
             ;;
         --shared)
             echo "Build libs with SHARED";
-            shared=1
+            SHARED=1
             shift 1
             ;;
         --release)
             echo "Build release (no debug)";
-            debug=Release
+            DEBUG_TYPE=Release
             shift 1
             ;;
         -k|--skip)
             echo "Skip confirm";
-            skip=1
+            SKIP=1
             shift 1
             ;;
         -c|--clean)
-            echo "clean build dir";
-            clean=1
+            echo "Clean build dir";
+            CLEAN=1
             shift 1
             ;;
         -h|--help)
-            help=1
+            HELP=1
             shift 1
             ;;
         -d|--debug)
             case "$2" in
                 "")
                     echo "Compile Mode: Debug(-d)";
-                    debug=Debug
+                    DEBUG_TYPE=Debug
                     shift 1;
                     ;;
                 *)
                     echo "Compile Mode: $2";
-                    debug=$2
+                    DEBUG_TYPE=$2
                     shift 2;
                     ;;
             esac
@@ -93,16 +91,20 @@ while [[ $# -gt 0 ]];do
     esac
 done
 
+BUILD_DIR="${PROJ_DIR}/build/${PLATFORM}"
+LOCAL_DIR="${PROJ_DIR}/local/${PLATFORM}"
+
+INI_FILE=${PROJ_SCRIPTS_DIR}/${PLATFORM}.ini
+
+source "${PROJ_SCRIPTS_DIR}/build-config.sh"
+
 function ReadBuildINI() {
     echo "ReadBuildINI from ${INI_FILE}"
-}
-
-function SetBuildINI() {
-  ${PROJ_SCRIPTS_DIR}/set-build-config.sh ${PROJ_DIR} ${platform} ${debug}
+    ConfigReadFromINI
 }
 
 if [[ -f "${INI_FILE}" && ${set_build_config} -eq 0 ]]; then
   ReadBuildINI
 else
-  SetBuildINI
+  ConfigAndSave
 fi

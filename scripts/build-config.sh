@@ -2,20 +2,9 @@
 
 ######################################
 ##          Project Info
+#
 
-PROJ_DIR=$1
-PLATFORM=$2
-DEBUG_TYPE=$3
-
-echo "Build-Config run with parameters [$1] [$2] [$3] "
-
-PROJ_SRC_DIR="${PROJ_DIR}/src"
-THIRD_DIR="${PROJ_DIR}/3rd"
-PROJ_SCRIPTS_DIR="${PROJ_DIR}/scripts"
-BUILD_DIR="${PROJ_DIR}/build/${PLATFORM}"
-LOCAL_DIR="${PROJ_DIR}/local/${PLATFORM}"
-
-INI_FILE="${PROJ_SCRIPTS_DIR}/${PLATFORM}.ini"
+echo "Build-Config run with parameters [$PROJ_DIR] [$PLATFORM] [$DEBUG_TYPE] "
 
 # platform default values
   # ssd202
@@ -26,8 +15,6 @@ platform_ssd202_toolchain="/opt/toolchain/arm-unknown-linux-gnueabihf"
 platform_mac_arch="arm64"
 
 BUILD_TO_STANDALONE_FOLDER=1
-IS_CROSS_COMPILING=0
-TARGET_ARCH=""
 COMPILER_PATH=""
 COMPILER_BIN_DIR=""
 COMPILER_PREFIX=""
@@ -141,12 +128,14 @@ function CheckToolchainPath(){
 
 function CheckSSD202() {
   IS_CROSS_COMPILING=1
-  TARGET_ARCH="arm"
+  TARGET_ARCH="armv7"
+  TARGET_SYSTEM="Linux"
   CheckToolchainPath ${platform_ssd202_toolchain}
 }
 
 function CheckMacOS() {
 
+  TARGET_SYSTEM="Darwin"
   # 读取用户输入
   read -p "MacOS Arch： [default:0]
 0) arm64
@@ -281,6 +270,7 @@ configuration="[toolchain]
 ; Compiler configuration
 IS_CROSS_COMPILING=${IS_CROSS_COMPILING}
 TARGET_ARCH=${TARGET_ARCH}
+TARGET_SYSTEM=${TARGET_SYSTEM}
 COMPILER_PATH=${COMPILER_PATH}
 COMPILER_BIN_DIR=${COMPILER_BIN_DIR}
 COMPILER_PREFIX=${COMPILER_PREFIX}
@@ -308,6 +298,8 @@ echo "${configuration}" > "${INI_FILE}"
 
 }
 
+function ConfigAndSave() {
+
 CheckBasicParameters
 CheckStandaloneDebugDir
 CheckCross
@@ -315,3 +307,104 @@ CheckPlatform "${PLATFORM}"
 CheckToolchain
 
 SaveConfigIni
+
+}
+
+
+
+function ReadIni(){
+    filePath=$3
+    section=$1
+    option=$2
+
+    test ! -f $filePath && echo "$filePath not exists." && return 2
+
+    local src=$(cat $filePath | awk '/\['$section'\]/{f=1;next} /\[*\]/{f=0} f' |
+    grep "${option}=" |
+    grep '='     |
+    cut -d'=' -f2|
+    cut -d'#' -f1|
+    cut -d';' -f1|
+    awk '{gsub(/^\s+|\s+$/, "");print}')
+    echo $src
+    if [[ $src == "" ]]; then
+      # echo "Read [$section] - [$option] failed."
+      # exit
+    fi
+}
+
+function ConfigReadFromINI() {
+
+    IS_CROSS_COMPILING=`ReadIni toolchain IS_CROSS_COMPILING ${INI_FILE}`
+    TARGET_ARCH=`ReadIni toolchain TARGET_ARCH ${INI_FILE}`
+    TARGET_SYSTEM=`ReadIni toolchain TARGET_SYSTEM ${INI_FILE}`
+    COMPILER_PATH=`ReadIni toolchain COMPILER_PATH ${INI_FILE}`
+    COMPILER_BIN_DIR=`ReadIni toolchain COMPILER_BIN_DIR ${INI_FILE}`
+    COMPILER_PREFIX=`ReadIni toolchain COMPILER_PREFIX ${INI_FILE}`
+    COMPILER_VERSION=`ReadIni toolchain COMPILER_VERSION ${INI_FILE}`
+    COMPILER_TARGET_PREFIX=`ReadIni toolchain LOCAL_DIR ${INI_FILE}`
+    DEBUG_TYPE=`ReadIni toolchain DEBUG_TYPE ${INI_FILE}`
+    COMPILER_CC=`ReadIni toolchain COMPILER_CC ${INI_FILE}`
+    COMPILER_CXX=`ReadIni toolchain COMPILER_CXX ${INI_FILE}`
+    COMPILER_AR=`ReadIni toolchain COMPILER_AR ${INI_FILE}`
+    COMPILER_LD=`ReadIni toolchain COMPILER_LD ${INI_FILE}`
+    COMPILER_NM=`ReadIni toolchain COMPILER_NM ${INI_FILE}`
+    COMPILER_OBJDUMP=`ReadIni toolchain COMPILER_OBJDUMP ${INI_FILE}`
+    COMPILER_RANLIB=`ReadIni toolchain COMPILER_RANLIB ${INI_FILE}`
+
+    PROJ_DIR=`ReadIni project PROJ_DIR ${INI_FILE}`
+    PLATFORM=`ReadIni project PLATFORM ${INI_FILE}`
+    BUILD_DIR=`ReadIni project BUILD_DIR ${INI_FILE}`
+    LOCAL_DIR=`ReadIni project LOCAL_DIR ${INI_FILE}`
+
+    export IS_CROSS_COMPILING="${IS_CROSS_COMPILING}"
+    export TARGET_ARCH="${TARGET_ARCH}"
+    export TARGET_SYSTEM="${TARGET_SYSTEM}"
+    export COMPILER_PATH="${COMPILER_PATH}"
+    export COMPILER_BIN_DIR="${COMPILER_BIN_DIR}"
+    export COMPILER_PREFIX="${COMPILER_PREFIX}"
+    export COMPILER_VERSION="${COMPILER_VERSION}"
+    export COMPILER_TARGET_PREFIX="${COMPILER_TARGET_PREFIX}"
+    export DEBUG_TYPE="${DEBUG_TYPE}"
+    export COMPILER_CC="${COMPILER_CC}"
+    export COMPILER_CXX="${COMPILER_CXX}"
+    export COMPILER_AR="${COMPILER_AR}"
+    export COMPILER_LD="${COMPILER_LD}"
+    export COMPILER_NM="${COMPILER_NM}"
+    export COMPILER_OBJDUMP="${COMPILER_OBJDUMP}"
+    export COMPILER_RANLIB="${COMPILER_RANLIB}"
+
+    export PROJ_DIR="${PROJ_DIR}"
+    export PLATFORM="${PLATFORM}"
+    export BUILD_DIR="${BUILD_DIR}"
+    export LOCAL_DIR="${LOCAL_DIR}"
+
+
+    configuration="
+    [toolchain]
+    IS_CROSS_COMPILING=${IS_CROSS_COMPILING}
+    TARGET_ARCH=${TARGET_ARCH}
+    TARGET_SYSTEM=${TARGET_SYSTEM}
+    COMPILER_PATH=${COMPILER_PATH}
+    COMPILER_BIN_DIR=${COMPILER_BIN_DIR}
+    COMPILER_PREFIX=${COMPILER_PREFIX}
+    COMPILER_VERSION=${COMPILER_VERSION}
+    COMPILER_TARGET_PREFIX=${LOCAL_DIR}
+    DEBUG_TYPE=${DEBUG_TYPE}
+    COMPILER_CC=${COMPILER_CC}
+    COMPILER_CXX=${COMPILER_CXX}
+    COMPILER_AR=${COMPILER_AR}
+    COMPILER_LD=${COMPILER_LD}
+    COMPILER_NM=${COMPILER_NM}
+    COMPILER_OBJDUMP=${COMPILER_OBJDUMP}
+    COMPILER_RANLIB=${COMPILER_RANLIB}
+
+    [project]
+    PROJ_DIR=${PROJ_DIR}
+    PLATFORM=${PLATFORM}
+    BUILD_DIR=${BUILD_DIR}
+    LOCAL_DIR=${LOCAL_DIR}
+    "
+
+    echo "${configuration}"
+}

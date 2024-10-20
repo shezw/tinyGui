@@ -5,7 +5,7 @@
 #ifndef TINYGUI_3RD_H
 #define TINYGUI_3RD_H
 
-#include "3rd/clist/src/list.h"
+#include "3rd/clist/src/clist.h"
 
 #ifdef __cplusplus
 extern "C" {

@@ -3,7 +3,7 @@
 ######################################
 ##          Project Info
 
-
+PROJECT=tinyGUI
 PROJ_DIR=$(cd $(dirname $0);cd ../; pwd)
 PROJ_SCRIPTS_DIR="${PROJ_DIR}/scripts"
 PROJ_SRC_DIR="${PROJ_DIR}/src"
@@ -18,13 +18,15 @@ HELP=0
 CLEAN=0
 TARGET_ARCH="x86_64"
 IS_CROSS_COMPILING=0
-SHARED=0
+SHARED="OFF"
 
-MAKE_CORES=32
+MAKE_CORES="-j32"
 CMAKE_COMMAND="cmake"
 MAKE_COMMAND="make"
+MAKE_INSTALL_COMMAND="make install"
 AUTOTOOL_COMMAND="configure"
 AUTOTOOL_GEN="aclocal & autoconf & automake"
+CMAKE_TOOLCHAIN_FILE="${PROJ_DIR}/cmake/cross_toolchain.cmake"
 
 set_build_config=0
 
@@ -43,7 +45,7 @@ while [[ $# -gt 0 ]];do
             ;;
         --shared)
             echo "Build libs with SHARED";
-            SHARED=1
+            SHARED="ON"
             shift 1
             ;;
         --release)
@@ -107,4 +109,44 @@ if [[ -f "${INI_FILE}" && ${set_build_config} -eq 0 ]]; then
   ReadBuildINI
 else
   ConfigAndSave
+  ReadBuildINI
 fi
+
+CMAKE_OPTIONS=" \
+-D CMAKE_TOOLCHAIN_FILE=${CMAKE_TOOLCHAIN_FILE} \
+-D IS_CROSS_COMPILING=${IS_CROSS_COMPILING} \
+-D TARGET_ARCH=${TARGET_ARCH} \
+-D TARGET_SYSTEM=${TARGET_SYSTEM} \
+-D COMPILER_PATH=${COMPILER_PATH} \
+-D COMPILER_BIN_DIR=${COMPILER_BIN_DIR} \
+-D COMPILER_PREFIX=${COMPILER_PREFIX} \
+-D COMPILER_VERSION=${COMPILER_VERSION} \
+-D COMPILER_TARGET_PREFIX=${LOCAL_DIR} \
+-D DEBUG_TYPE=${DEBUG_TYPE} \
+-D COMPILER_CC=${COMPILER_CC} \
+-D COMPILER_CXX=${COMPILER_CXX} \
+-D COMPILER_AR=${COMPILER_AR} \
+-D COMPILER_LD=${COMPILER_LD} \
+-D COMPILER_NM=${COMPILER_NM} \
+-D COMPILER_OBJDUMP=${COMPILER_OBJDUMP} \
+-D COMPILER_RANLIB=${COMPILER_RANLIB} \
+-D PROJ_DIR=${PROJ_DIR} \
+-D PLATFORM=${PLATFORM} \
+-D BUILD_DIR=${BUILD_DIR} \
+-D LOCAL_DIR=${LOCAL_DIR} \
+-D INSTALL_PKGCONFIG_DIR=${LOCAL_DIR}/lib/pkgconfig \
+-D CMAKE_INSTALL_PREFIX=${LOCAL_DIR} \
+-D CMAKE_BUILD_TYPE=${DEBUG_TYPE}
+-D BUILD_SHARED_LIBS=${SHARED}
+"
+
+mkdir -p "${BUILD_DIR}/${PROJECT}"
+mkdir -p "${LOCAL_DIR}"
+
+cd ${BUILD_DIR}/${PROJECT}
+
+${CMAKE_COMMAND} ${PROJ_DIR} ${CMAKE_OPTIONS}
+
+${MAKE_COMMAND} ${MAKE_CORES}
+
+${MAKE_INSTALL_COMMAND} ${MAKE_CORES}

@@ -6,28 +6,28 @@
 #include "../utils/cobj.h"
 #include "loop.h"
 
-list_t * mainLoopRoot = NULL;
-list_t * sideLoopRoot = NULL;
+clist_t * mainLoopRoot = NULL;
+clist_t * sideLoopRoot = NULL;
 
 void tinygui_main_loop_construct()
 {
-    mainLoopRoot = list_new();
+    mainLoopRoot = clist_new();
 }
 
 void tinygui_main_loop_init()
 {
 //    TinyGUI_LoopUnit * unit = NULL;
-//    tinygui_linked_list_init( loopRoot, sizeof(TinyGUI_LoopUnit) );
+//    tinygui_linked_clist_init( loopRoot, sizeof(TinyGUI_LoopUnit) );
 }
 
 void tinygui_main_loop_deinit()
 {
-    list_destroy( mainLoopRoot );
+    clist_destroy( mainLoopRoot );
 }
 
 void tinygui_side_loop_construct()
 {
-    sideLoopRoot = list_new();
+    sideLoopRoot = clist_new();
 }
 
 void tinygui_side_loop_init()
@@ -37,7 +37,7 @@ void tinygui_side_loop_init()
 
 void tinygui_side_loop_deinit()
 {
-    list_destroy( sideLoopRoot );
+    clist_destroy( sideLoopRoot );
 }
 
 TinyGUI_LoopUnit * tinygui_main_loop_add
@@ -48,7 +48,7 @@ TinyGUI_LoopUnit * tinygui_main_loop_add
     loop->period = period;
     loop->repeat = repeats;
 
-    list_rpush( mainLoopRoot, list_node_new(loop) );
+    clist_rpush( mainLoopRoot, clist_node_new(loop) );
 
     return loop;
 }

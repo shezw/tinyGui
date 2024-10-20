@@ -327,10 +327,10 @@ function ReadIni(){
     cut -d';' -f1|
     awk '{gsub(/^\s+|\s+$/, "");print}')
     echo $src
-    if [[ $src == "" ]]; then
+#    if [[ $src == "" ]]; then
       # echo "Read [$section] - [$option] failed."
       # exit
-    fi
+#    fi
 }
 
 function ConfigReadFromINI() {

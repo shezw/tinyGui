@@ -3,6 +3,9 @@
 #include <assert.h>
 #include <pthread.h>
 #include <unistd.h>
+
+#include "core/renderer.h"
+#include "core/loop.h"
 #include "tinygui.h"
 
 static pthread_mutex_t mutex;
@@ -38,6 +41,20 @@ TinyGUI_Status tinygui_init( TinyGUI_Config * conf )
     singletonTinyGUI->conf = conf;
 
     assert( conf->proxy && conf->proxy->acc );
+    assert( conf->proxy->acc && conf->proxy->acc->init);
+    assert( conf->proxy->display && conf->proxy->display->init);
+    assert( conf->proxy->input && conf->proxy->input->init);
+
+    tinygui_main_loop_construct();
+
+    if (conf->proxy->acc)
+        conf->proxy->acc->init();
+
+    if (conf->proxy->display)
+        conf->proxy->display->init();
+
+    if (conf->proxy->input)
+        conf->proxy->input->init();
 
     return TinyGUI_OK;
 }
@@ -75,7 +92,6 @@ static void *input_thread()
     {
         // todo input handler
         usleep( currentInputPeriodUS );
-        printf("main input loop \n");
     }
     return 0;
 }
@@ -91,11 +107,17 @@ void tinygui_main()
 
         tinygui_main_lock();
 
-        // Todo in mainloop [ Gui Handler ]
-        usleep( currentPeriodUS );
+        tinygui_main_loop_run();
 
-        printf("main loop \n");
+        tinygui_pre_rend();
+        tinygui_rend();
+
+//        printf("main loop \n");
+
+        // Todo in mainloop [ Gui Handler ]
         tinygui_main_unlock();
+
+        usleep( currentPeriodUS );
     }
 
     tinygui_main_mutex_destroy();

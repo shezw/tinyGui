@@ -5,6 +5,8 @@
 #include "memory.h"
 #include "fill.h"
 #include "blend.h"
+#include "display.h"
+#include "input.h"
 
 #ifndef TINYGUI_PROXY_H
 #define TINYGUI_PROXY_H
@@ -26,9 +28,11 @@ typedef struct TinyGUI_Acc_t
 
 typedef struct TinyGUI_Proxy_t
 {
-    bool                 useAcc;
-    TinyGUI_AccType      accType;
+    bool               useAcc;
+    TinyGUI_AccType    accType;
     TinyGUI_Acc        * acc;
+    TinyGUI_DisplayMgr * display;
+    TinyGUI_InputMgr   * input;
 
 } TinyGUI_Proxy;
 

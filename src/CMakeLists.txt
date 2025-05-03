@@ -43,6 +43,8 @@ set(LIBTINYGUI_PUBLIC_PROXY_HDRS
         src/proxy/fill.h
         src/proxy/blend.h
         src/proxy/memory.h
+        src/proxy/display.h
+        src/proxy/input.h
         src/proxy/proxy.h
 
         )
@@ -70,10 +72,12 @@ set(LIBTINYGUI_SRCS
         src/core/buffer.c
         src/core/input.c
         src/core/event.c
+        src/core/time.c
         src/core/reaction.c
         src/core/layer.c
         src/core/loop.c
         src/core/screen.c
+        src/core/renderer.c
 
         src/acc/sw/sw_blend.c
         src/acc/sw/sw_mem.c
@@ -88,14 +92,20 @@ set(LIBTINYGUI_SRCS
         src/proxy/fill.c
         src/proxy/blend.c
         src/proxy/memory.c
+        src/proxy/display.c
+        src/proxy/input.c
 
         src/tinygui.c
         )
 
 if (BUILD_SHARED_LIBS)
-    add_library(tinygui SHARED ${LIBTINYGUI_SRCS} ${LIBTINYGUI_THIRD_SRCS} ${LIBTINYGUI_PUBLIC_HDRS} ${LIBTINYGUI_PRIVATE_HDRS})
+    add_library(tinygui SHARED ${LIBTINYGUI_SRCS} ${LIBTINYGUI_PORTING_SRCS} ${LIBTINYGUI_THIRD_SRCS} ${LIBTINYGUI_PUBLIC_HDRS} ${LIBTINYGUI_PRIVATE_HDRS})
+    target_link_directories(tinygui PUBLIC ${LIBTINYGUI_PORTING_LIBS_DIRS})
+    target_link_libraries(tinygui ${LIBTINYGUI_PORTING_LIBS})
 else ()
-    add_library(tinygui STATIC ${LIBTINYGUI_SRCS} ${LIBTINYGUI_THIRD_SRCS} ${LIBTINYGUI_PUBLIC_HDRS} ${LIBTINYGUI_PRIVATE_HDRS})
+    add_library(tinygui STATIC ${LIBTINYGUI_SRCS} ${LIBTINYGUI_PORTING_SRCS} ${LIBTINYGUI_THIRD_SRCS} ${LIBTINYGUI_PUBLIC_HDRS} ${LIBTINYGUI_PRIVATE_HDRS})
+    target_link_directories(tinygui PUBLIC ${LIBTINYGUI_PORTING_LIBS_DIRS})
+    target_link_libraries(tinygui ${LIBTINYGUI_PORTING_LIBS})
 endif ()
 set_target_properties(tinygui PROPERTIES SOVERSION 1)
 set_target_properties(tinygui PROPERTIES VERSION ${VERSION})

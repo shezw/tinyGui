@@ -18,7 +18,7 @@ extern "C" {
 
 typedef struct TinyGUI_Config_t
 {
-    TinyGUI_ViewSet viewSet;
+    TinyGUI_ViewSet * viewSet;
     TinyGUI_Proxy * proxy;
 
 } TinyGUI_Config;

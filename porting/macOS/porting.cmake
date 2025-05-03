@@ -1,0 +1,36 @@
+include_directories(
+    ${PORTING_DIR}/macOS
+    ${PORTING_DIR}/macOS/sdl
+)
+set(PORTING_MACOS ON)
+set(PORTING_MACOS_SDL ON)
+set(PORTING_SDL ON)
+set(PORTING_SDL2 ON)
+
+add_compile_definitions(PORTING_MACOS=1)
+
+#find_package(SDL2 REQUIRED)
+
+set(LIBTINYGUI_PORTING_LIBS ${LIBTINYGUI_PORTING_LIBS}
+        SDL2
+        )
+
+set(LIBTINYGUI_PORTING_LIBS_DIRS ${LIBTINYGUI_PORTING_LIBS_DIRS}
+        ${SDL2_LIBRARY}
+        )
+
+set(LIBTINYGUI_PORTING_INCLUDE_DIRS ${LIBTINYGUI_PORTING_INCLUDE_DIRS}
+        ${SDL2_INCLUDE_DIR}
+        )
+
+#message("SDL2_INCLUDE_DIR: ${SDL2_INCLUDE_DIR}")
+#message("SDL2_LIBRARY: ${SDL2_LIBRARY}")
+#message("SDL2_DEFINITIONS: ${SDL2_DEFINITIONS}")
+
+include_directories(${LIBTINYGUI_PORTING_INCLUDE_DIRS})
+
+set(LIBTINYGUI_PORTING_SRCS ${LIBTINYGUI_PORTING_SRCS}
+    ${PORTING_DIR}/macOS/sdl/loop.c
+    ${PORTING_DIR}/macOS/sdl/input.c
+    ${PORTING_DIR}/macOS/sdl/display.c
+)

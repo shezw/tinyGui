@@ -1,27 +1,43 @@
 //
 // Created by 志伟佘 on 2024/3/9.
 //
+
+#include <assert.h>
+
 #include "../utils/cobj.h"
 #include "screen.h"
 #include "buffer.h"
 
-TinyGUI_Screen * tinygui_screen_construct( TinyGUI_ViewSet conf, bool directMode )
+TinyGUI_Screen * tinygui_screen_construct( TinyGUI_DisplayMgr * display, bool directMode )
 {
+    TinyGUI_ViewSet * conf = display->viewSet;
+
     _CObject(screen,TinyGUI_Screen);
     _CSubObject( screen->imp, TinyGUI_Reaction);
-    _StCopy(screen->set, conf);
+    _CSubObject( screen->set, TinyGUI_ViewSet);
+    _PtrCopy(screen->set, conf, TinyGUI_ViewSet);
 
     screen->directMode = directMode;
+
     if ( !screen->directMode )
-        screen->imp->buffer = PROXY_ACC->new_buffer( &conf );
+    {
+        screen->imp->buffer = PROXY_ACC->new_buffer(conf);
+    }
+    else
+    {
+        assert( display->buffer != NULL );
+        screen->imp->buffer = display->buffer;
+    }
+    display->screen = screen;
+    screen->display = display;
 
     return screen;
 }
 
 TinyGUI_Status   tinygui_screen_add_layer
-( TinyGUI_Screen * screen, TinyGUI_ViewSet set, TinyGUI_ViewPos pos, TinyGUI_ViewCut cut )
+( TinyGUI_Screen * screen, TinyGUI_ViewSet* set, TinyGUI_ViewPos* pos, TinyGUI_ViewCut* cut )
 {
-    TinyGUI_Layer * layer = tinygui_layer_construct( set, pos, cut );
+    TinyGUI_Layer * layer = tinygui_layer_construct( screen, set, pos, cut );
     if (!screen->layers)
         screen->layers = layer;
     else

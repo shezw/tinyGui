@@ -4,6 +4,7 @@ set(CMAKE_ALLOW_LOOSE_LOOP_CONSTRUCTS ON)
 project(tinyGui C)
 
 set(VERSION "0.0.1")
+set(PROJ_DIR ${CMAKE_CURRENT_SOURCE_DIR})
 
 set(INSTALL_BIN_DIR "${CMAKE_INSTALL_PREFIX}/bin" CACHE PATH "Installation directory for executables")
 set(INSTALL_LIB_DIR "${CMAKE_INSTALL_PREFIX}/lib" CACHE PATH "Installation directory for libraries")
@@ -42,8 +43,20 @@ configure_file(${CMAKE_CURRENT_SOURCE_DIR}/tinyguiconf.h.in
 		${CMAKE_CURRENT_BINARY_DIR}/tinyguiconf.h @ONLY)
 include_directories(${CMAKE_CURRENT_BINARY_DIR} ${CMAKE_SOURCE_DIR} 3rd)
 
-include(3rd/CMakeLists.txt)
+include_directories(SYSTEM
+    ${CMAKE_CURRENT_BINARY_DIR}
+    ${CMAKE_CURRENT_SOURCE_DIR}
+    ${CMAKE_CURRENT_SOURCE_DIR}/3rd
+    ${CMAKE_CURRENT_SOURCE_DIR}/porting
+    ${CMAKE_CURRENT_SOURCE_DIR}/src
+)
 
+include(porting/common.cmake)
+include(3rd/CMakeLists.txt)
 include(src/CMakeLists.txt)
 
 include(tests/CMakeLists.txt)
+
+# install lib, includes
+
+

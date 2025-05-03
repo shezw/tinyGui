@@ -3,8 +3,12 @@
 //
 
 #include "tinyguiconf.h"
+
+#include <stdio.h>
 #include <stdbool.h>
+#include <stdlib.h>
 #include <stdint.h>
+#include <string.h>
 
 #ifndef TINYGUI_TYPES_H
 #define TINYGUI_TYPES_H

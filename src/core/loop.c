@@ -106,7 +106,8 @@ void tinygui_main_loop_del( TinyGUI_LoopUnit unit )
 
 TinyGUI_LoopUnit * tinygui_side_loop_add( TinyGUI_LoopCall call, TinyGUI_TimeStamp period, I32 repeats )
 {
-
+    // todo
+    return 0;
 }
 
 void tinygui_side_loop_del( TinyGUI_LoopUnit unit )

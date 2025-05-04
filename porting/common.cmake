@@ -20,7 +20,8 @@ if (PORTING STREQUAL "MACOS")
     message(WARNING "Porting to MacOS")
     include(${PORTING_DIR}/macOS/porting.cmake)
 elseif(PORTING STREQUAL "LINUX")
-
+    message(WARNING "Porting to Linux")
+    include(${PORTING_DIR}/linux/porting.cmake)
 endif()
 
 include_directories(${LIBTINYGUI_PORTING_INCS})
